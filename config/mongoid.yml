@@ -5,11 +5,11 @@ development:
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: echo_development
-      # Provides the hosts the default client can connect to. Must be an array
-      # of host:port pairs. (required)
+      database: <%= ENV['DB_NAME'] %>
+      
       hosts:
-        - localhost:27017
+        - <%= ENV['PORTAL_ONE'] %>
+        - <%= ENV['PORTAL_TWO'] %>
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:
@@ -22,10 +22,10 @@ development:
         #   mode: :secondary_preferred
 
         # The name of the user for authentication.
-        user: echo-user
+        user: <%= ENV['USERNAME'] %>
 
         # The password of the user for authentication.
-        password: password
+        password: <%= ENV['USER_PASS'] %>
 
         # The user's database roles.
         # roles:
@@ -77,7 +77,7 @@ development:
         # replica_set: name
 
         # Whether to connect to the servers via ssl. (default: false)
-        # ssl: true
+        ssl: true
 
         # The certificate file used to identify the connection against MongoDB.
         # ssl_cert: /path/to/my.cert
@@ -91,11 +91,11 @@ development:
         # ssl_key_pass_phrase: password
 
         # Whether or not to do peer certification validation. (default: false)
-        # ssl_verify: true
+        ssl_verify: true
 
         # The file containing a set of concatenated certification authority certifications
         # used to validate certs passed from the other end of the connection.
-        # ssl_ca_cert: /path/to/ca.cert
+        ssl_ca_cert: /certs/ca.pem
 
 
   # Configure Mongoid specific options. (optional)
